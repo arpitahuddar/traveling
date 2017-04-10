@@ -5,8 +5,20 @@
     <meta charset="UTF-8">
     <title>Traveling Salesman</title>
     <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+     <style>
+         
+            #graph-container {
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                position: absolute;
+            }
+        </style>
+    
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>S
+        crossorigin="anonymous"></script>
+    <script src="lib/vendor/sigma/sigma.min.js"></script>
     <script src="src/City.js"></script>
     <script src="src/TourManager.js"></script>
     <script src="src/Tour.js"></script>
@@ -18,12 +30,61 @@
 
 <body>
     <a target="_blank" href="http://www.theprojectspot.com/tutorial-post/applying-a-genetic-algorithm-to-the-travelling-salesman-problem/5"> Transcribe from genetic algorithm for traveling salesman problem</a>
-
+    <div id="container">
+       
+        <div id="graph-container"></div>
+    </div>
     <script>
         $(document).ready(function () {
             console.log("ready!");
-        });
+            var pop = main.getFittestPop();
 
+            var s, g = {
+                nodes: [],
+                edges: []
+            };
+            var fittest = pop.getFittest();
+
+            for (var i = 0; i < fittest.tour.length; i++) {
+                g.nodes.push({
+                    id: 'c' + i,
+                    label: 'City ' + i,
+                    x: fittest.tour[i].x,
+                    y: fittest.tour[i].y,
+                    size: 1,
+                    color: '#555'
+                });
+            }
+
+            //do edges
+            for (var i = 0; i < fittest.tour.length; i++){
+                if (i < (fittest.tour.length -1)){
+                    g.edges.push({
+                    id: 'e' + i,
+                    source: 'c' + i,
+                    target: 'c' + (i+1),
+                    size: fittest.tour[i].distanceTo(fittest.tour[i+1]),
+                    color: '#ccc'
+                });
+                } else {
+                g.edges.push({
+                    id: 'e' + i,
+                    source: 'c'+ i,
+                    target: 'c' + 0,
+                    size: fittest.tour[i].distanceTo(fittest.tour[0]),
+                    color: '#ccc'
+                });
+                }
+            }
+
+
+            // Instantiate sigma:
+            s = new sigma({
+                graph: g,
+                container: "graph-container"
+            });
+
+        });
     </script>
 
 </body>
