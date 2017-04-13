@@ -6,13 +6,17 @@
     <title>Traveling Salesman</title>
     <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
      <style>
-         
-            #graph-container {
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
+          #graph-container {
+                width: 50%;
+                height: 50%;
                 position: absolute;
+            }
+         
+            #container {
+               height: 500px;
+               width: 500px;
+                position: absolute;
+                margin: 15px;
             }
         </style>
     
@@ -30,7 +34,7 @@
 
 <body>
     <a target="_blank" href="http://www.theprojectspot.com/tutorial-post/applying-a-genetic-algorithm-to-the-travelling-salesman-problem/5"> Transcribe from genetic algorithm for traveling salesman problem</a>
-    <div id="container">
+    <div id="container" >
        
         <div id="graph-container"></div>
     </div>
@@ -64,7 +68,7 @@
                     source: 'c' + i,
                     target: 'c' + (i+1),
                     size: fittest.tour[i].distanceTo(fittest.tour[i+1]),
-                    color: '#ccc'
+                    color: '#555'
                 });
                 } else {
                 g.edges.push({
