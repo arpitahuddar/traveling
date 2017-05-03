@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>RX AngularJS Example</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/4.0.7/rx.lite.compat.js"></script>
+    <script src="rx.angular.js"></script>
+    <script src="rx.app.js"></script>
+   
+  
+  </head>
+
+  <body>
+   <h1>rx.angular Example</h1><hr>
+    <div ng-controller="updateCtrl as ctrl1" >
+      <h1>Update</h1>
+      <input ng-model="ctrl1.value">
+      <button ng-click="ctrl1.update(ctrl1.value)">Update</button>
+    </div>
+    <hr>
+    <div ng-controller="displayCtrl as ctrl2">
+      <h1>Display</h1>
+      <p>{{ctrl2.data}}</p>
+    </div>
+    <hr>
+  
+  </body>
+
+</html>

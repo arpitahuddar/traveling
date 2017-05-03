@@ -5,21 +5,44 @@
     <meta charset="UTF-8">
     <title>Traveling Salesman</title>
     <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-     <style>
-          #graph-container {
-                width: 50%;
-                height: 50%;
-                position: absolute;
-            }
-         
-            #container {
-               height: 500px;
-               width: 500px;
-                position: absolute;
-                margin: 15px;
-            }
-        </style>
-    
+    <style>
+       /* body {
+            height: 100vh;
+            width: 100vh;
+        }*/
+        
+        .page {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+        }
+        .info {
+            flex: 0 0 1;
+            margin-bottom: 15px;
+        }
+        
+        .dashboard {
+            display: flex;
+            flex-wrap: wrap;
+            height: 100%;
+            width: 100%;
+        }
+        
+        .graph-container {
+            width: 70%;
+            height: 70%;
+            position: absolute;
+        }
+        
+        .container {
+            height: 300px;
+            width: 300px;
+            position: relative;
+       
+        }
+    </style>
+
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
     <script src="lib/vendor/sigma/sigma.min.js"></script>
@@ -33,11 +56,30 @@
 </head>
 
 <body>
-    <a target="_blank" href="http://www.theprojectspot.com/tutorial-post/applying-a-genetic-algorithm-to-the-travelling-salesman-problem/5"> Transcribe from genetic algorithm for traveling salesman problem</a>
-    <div id="container" >
-       
-        <div id="graph-container"></div>
+    <div class="page">
+        <div class="info">
+            <a target="_blank" href="http://www.theprojectspot.com/tutorial-post/applying-a-genetic-algorithm-to-the-travelling-salesman-problem/5"> Transcribe from genetic algorithm for traveling salesman problem</a>
+        </div>
+        <div class="dashboard">
+            <div class="container">
+                <div id="graph-container-1" class="graph-container"></div>
+            </div>
+            <div class="container">
+                <div id="graph-container-2" class="graph-container"></div>
+            </div>
+             <div class="container">
+                <div id="graph-container-3" class="graph-container"></div>
+            </div>
+             <div class="container">
+                <div id="graph-container-4" class="graph-container"></div>
+            </div>
+             <div class="container">
+                <div id="graph-container-5" class="graph-container"></div>
+            </div>
+        </div>
     </div>
+
+
     <script>
         $(document).ready(function () {
             console.log("ready!");
@@ -61,23 +103,23 @@
             }
 
             //do edges
-            for (var i = 0; i < fittest.tour.length; i++){
-                if (i < (fittest.tour.length -1)){
+            for (var i = 0; i < fittest.tour.length; i++) {
+                if (i < (fittest.tour.length - 1)) {
                     g.edges.push({
-                    id: 'e' + i,
-                    source: 'c' + i,
-                    target: 'c' + (i+1),
-                    size: fittest.tour[i].distanceTo(fittest.tour[i+1]),
-                    color: '#555'
-                });
+                        id: 'e' + i,
+                        source: 'c' + i,
+                        target: 'c' + (i + 1),
+                        size: fittest.tour[i].distanceTo(fittest.tour[i + 1]),
+                        color: '#555'
+                    });
                 } else {
-                g.edges.push({
-                    id: 'e' + i,
-                    source: 'c'+ i,
-                    target: 'c' + 0,
-                    size: fittest.tour[i].distanceTo(fittest.tour[0]),
-                    color: '#ccc'
-                });
+                    g.edges.push({
+                        id: 'e' + i,
+                        source: 'c' + i,
+                        target: 'c' + 0,
+                        size: fittest.tour[i].distanceTo(fittest.tour[0]),
+                        color: '#ccc'
+                    });
                 }
             }
 
@@ -85,7 +127,38 @@
             // Instantiate sigma:
             s = new sigma({
                 graph: g,
-                container: "graph-container"
+                container: "graph-container-1",
+                settings: {
+                    mouseWheelEnabled: false
+                }
+            });
+            s = new sigma({
+                graph: g,
+                container: "graph-container-2",
+                settings: {
+                    mouseWheelEnabled: false
+                }
+            });
+             s = new sigma({
+                graph: g,
+                container: "graph-container-3",
+                settings: {
+                    mouseWheelEnabled: false
+                }
+            });
+             s = new sigma({
+                graph: g,
+                container: "graph-container-4",
+                settings: {
+                    mouseWheelEnabled: false
+                }
+            });
+             s = new sigma({
+                graph: g,
+                container: "graph-container-5",
+                settings: {
+                    mouseWheelEnabled: false
+                }
             });
 
         });

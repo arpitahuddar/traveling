@@ -31,16 +31,16 @@ var main = (function () {
     TourManager.addCity(city14);
     var city15 = new City(20, 40, 'City-O');
     TourManager.addCity(city15);
-    var city16 = new City(100, 40, 'City-P');
-    TourManager.addCity(city16);
-    var city17 = new City(200, 40, 'City-Q');
-    TourManager.addCity(city17);
-    var city18 = new City(20, 20, 'City-R');
-    TourManager.addCity(city18);
-    var city19 = new City(60, 20, 'City-S');
-    TourManager.addCity(city19);
-    var city20 = new City(160, 20, 'City-T');
-    TourManager.addCity(city20);
+    // var city16 = new City(100, 40, 'City-P');
+    // TourManager.addCity(city16);
+    // var city17 = new City(200, 40, 'City-Q');
+    // TourManager.addCity(city17);
+    // var city18 = new City(20, 20, 'City-R');
+    // TourManager.addCity(city18);
+    // var city19 = new City(60, 20, 'City-S');
+    // TourManager.addCity(city19);
+    // var city20 = new City(160, 20, 'City-T');
+    // TourManager.addCity(city20);
 
     // Initialize population
     var pop = new Population(50, true);
