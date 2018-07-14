@@ -21,16 +21,16 @@ var main = (function () {
     TourManager.addCity(city9);
     var city10 = new City(100, 120, 'City-J');
     TourManager.addCity(city10);
-    var city11 = new City(180, 100, 'City-K');
-    TourManager.addCity(city11);
-    var city12 = new City(60, 80, 'City-L');
-    TourManager.addCity(city12);
-    var city13 = new City(120, 80, 'City-M');
-    TourManager.addCity(city13);
-    var city14 = new City(180, 60, 'City-N');
-    TourManager.addCity(city14);
-    var city15 = new City(20, 40, 'City-O');
-    TourManager.addCity(city15);
+    // var city11 = new City(180, 100, 'City-K');
+    // TourManager.addCity(city11);
+    // var city12 = new City(60, 80, 'City-L');
+    // TourManager.addCity(city12);
+    // var city13 = new City(120, 80, 'City-M');
+    // TourManager.addCity(city13);
+    // var city14 = new City(180, 60, 'City-N');
+    // TourManager.addCity(city14);
+    // var city15 = new City(20, 40, 'City-O');
+    // TourManager.addCity(city15);
     // var city16 = new City(100, 40, 'City-P');
     // TourManager.addCity(city16);
     // var city17 = new City(200, 40, 'City-Q');
@@ -60,7 +60,7 @@ var main = (function () {
     console.log(pop.getFittest().toString());
 
     return {
-        getFittestPop: function () {
+        pop: function () {
             return pop;
         }
     };
