@@ -8,47 +8,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
     <style>
-        /* body {
-            height: 100vh;
-            width: 100vh;
-        }*/
-
-        /* .page {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            width: 100%;
-        }
-
-        .info {
-            flex: 0 0 1;
-            margin-bottom: 15px;
-        }
-
-        .dashboard {
-            display: flex;
-            flex-wrap: wrap;
-            height: 100%;
-            width: 100%;
-        }
-
-      
-
-        .container {
-            height: 300px;
-            width: 300px;
-            position: relative;
-
-        } */
-
-        /* .graph-container {
-            width: 70%;
-            height: 70%;
-            position: absolute;
-        } */
-
         .viz {
-            max-width: 400px;
+            /* max-width: 400px; */
+            width: 100%;
             height: 400px;
             margin: auto;
         }
@@ -69,78 +31,12 @@
 
 <body>
     <div class="page">
-        <div class="info">
-            <a target="_blank" href="http://www.theprojectspot.com/tutorial-post/applying-a-genetic-algorithm-to-the-travelling-salesman-problem/5">
-                Transcribe from genetic algorithm for traveling salesman problem</a>
-        </div>
-        <!-- <div class="dashboard"> -->
+        <h1>Traveling Salesman solved with Genetic Algorithm</h1>
+    
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    <div id="graph-container-1" class="viz"></div>
-                    <p id="fitness-container-1"></p>
-                </div>
-                <div class="col-md-4">
-                    <div id="graph-container-2" class="viz"></div>
-                    <p id="fitness-container-2"></p>
-                </div>
-                <div class="col-md-4">
-                    <div id="graph-container-3" class="viz"></div>
-                    <p id="fitness-container-3"></p>
-                </div>
-                <div class="col-md-4">
-                    <div id="graph-container-4" class="viz"></div>
-                    <p id="fitness-container-4"></p>
-                </div>
-                <div class="col-md-4">
-                    <div id="graph-container-5" class="viz"></div>
-                    <p id="fitness-container-5"></p>
-                </div>
-                <div class="col-md-4">
-                        <div id="graph-container-6" class="viz"></div>
-                        <p id="fitness-container-6"></p>
-                    </div>
-                    <div class="col-md-4">
-                            <div id="graph-container-7" class="viz"></div>
-                            <p id="fitness-container-7"></p>
-                        </div>
-                        <div class="col-md-4">
-                                <div id="graph-container-8" class="viz"></div>
-                                <p id="fitness-container-8"></p>
-                            </div>
-                            <div class="col-md-4">
-                                    <div id="graph-container-9" class="viz"></div>
-                                    <p id="fitness-container-9"></p>
-                                </div>
-                                <div class="col-md-4">
-                                        <div id="graph-container-10" class="viz"></div>
-                                        <p id="fitness-container-10"></p>
-                                    </div>
-                                    
             </div>
-
         </div>
-        <!-- <div class="container">
-                <div id="graph-container-1" class="graph-container"></div>
-                <p id="fitness-container-1"></p>
-            </div>
-            <div class="container">
-                <div id="graph-container-2" class="graph-container"></div>
-                <p id="fitness-container-2"></p>
-            </div>
-            <div class="container">
-                <div id="graph-container-3" class="graph-container"></div>
-                <p id="fitness-container-3"></p>
-            </div>
-            <div class="container">
-                <div id="graph-container-4" class="graph-container"></div>
-                <p id="fitness-container-4"></p>
-            </div>
-            <div class="container">
-                <div id="graph-container-5" class="graph-container"></div>
-                <p id="fitness-container-5"></p>
-            </div> -->
-        <!-- </div> -->
     </div>
 
 
@@ -154,25 +50,26 @@
             tours.sort((a, b) => {
                 if (a.fitness < b.fitness) {
                     return 1;
-                } else if (a.fitnes > b.fitness) {
-                    return -1
+                } else if (a.fitness > b.fitness) {
+                    return -1;
                 } else return 0;
             })
+            let hilo = [];
+            hilo.push (tours[0]);
+            hilo.push(tours[tours.length-1]);
+            tours.slice(0, 6);
+            let xmlString = "";
+            for (let i = 0; i < hilo.length; i++) {
+                xmlString +=
+                    `<div class="graph-parent col-md-6 col-sm-12"><div id="graph-container-${i+1}" class="viz"></div><p id="fitness-container-${i+1}"></p></div>`;
+            }
+            document.querySelectorAll(".row")[0].innerHTML = xmlString;
 
-            var s, g = {
-                nodes: [],
-                edges: []
-            };
-            // var fittest = pop.getFittest();
+            hilo.forEach((Tour, index) => {
+                let graphStucture = TourVizGraph(Tour.tour, "graph-container-" + (index + 1));
+                new sigma(graphStucture);
+                document.querySelector("#fitness-container-" + (index + 1)).innerHTML =  `Fitness: ${Tour.fitness.toFixed(5)} Distance: ${Tour.distance.toFixed(5)}`;
 
-            tours.forEach((Tour, index) => {
-                // if (index <= 4) {
-                    let graphStucture = TourVizGraph(Tour.tour, "graph-container-" + (index + 1));
-                    g = graphStucture.s;
-                    new sigma(graphStucture.s);
-                    document.querySelector("#fitness-container-" + (index + 1)).innerHTML = Tour.fitness
-                        .toFixed(5);
-                // }
             })
 
 

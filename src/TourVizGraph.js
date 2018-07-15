@@ -39,5 +39,5 @@ function TourVizGraph(tour, containerId){
             });
         }
     }
-    return {g:g, s:s};
+    return s;
 }
