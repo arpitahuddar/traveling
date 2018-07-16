@@ -19,18 +19,21 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
     <script src="lib/vendor/sigma/sigma.min.js"></script>
-
-    
-    <script src="index.js"  type="module"></script>
-    
-   
+    <script src="src/City.js"></script>
+    <script src="src/TourManager.js"></script>
+    <script src="src/Tour.js"></script>
+    <script src="src/Population.js"></script>
+    <script src="src/GA.js"></script>
+    <script src="src/TourVizGraph.js"></script>
+    <script src="src/main.js"></script>
 
 </head>
 
 <body>
     <div class="page">
         <h1>Traveling Salesman solved with Genetic Algorithm</h1>
-          <div class="container">
+    
+        <div class="container">
             <div class="row">
             </div>
         </div>
@@ -38,39 +41,39 @@
 
 
     <script>
-        // $(document).ready(function () {
-        //     console.log("ready!");
-        //     var pop = main.pop();
+        $(document).ready(function () {
+            console.log("ready!");
+            var pop = main.pop();
 
-        //     let tours = pop.tours;
-        //     //ascending sort
-        //     tours.sort((a, b) => {
-        //         if (a.fitness < b.fitness) {
-        //             return 1;
-        //         } else if (a.fitness > b.fitness) {
-        //             return -1;
-        //         } else return 0;
-        //     })
-        //     let hilo = [];
-        //     hilo.push (tours[0]);
-        //     hilo.push(tours[tours.length-1]);
-        //     tours.slice(0, 6);
-        //     let xmlString = "";
-        //     for (let i = 0; i < hilo.length; i++) {
-        //         xmlString +=
-        //             `<div class="graph-parent col-md-6 col-sm-12"><div id="graph-container-${i+1}" class="viz"></div><p id="fitness-container-${i+1}"></p></div>`;
-        //     }
-        //     document.querySelectorAll(".row")[0].innerHTML = xmlString;
+            let tours = pop.tours;
+            //ascending sort
+            tours.sort((a, b) => {
+                if (a.fitness < b.fitness) {
+                    return 1;
+                } else if (a.fitness > b.fitness) {
+                    return -1;
+                } else return 0;
+            })
+            let hilo = [];
+            hilo.push (tours[0]);
+            hilo.push(tours[tours.length-1]);
+            tours.slice(0, 6);
+            let xmlString = "";
+            for (let i = 0; i < hilo.length; i++) {
+                xmlString +=
+                    `<div class="graph-parent col-md-6 col-sm-12"><div id="graph-container-${i+1}" class="viz"></div><p id="fitness-container-${i+1}"></p></div>`;
+            }
+            document.querySelectorAll(".row")[0].innerHTML = xmlString;
 
-        //     hilo.forEach((Tour, index) => {
-        //         let graphStucture = TourVizGraph(Tour.tour, "graph-container-" + (index + 1));
-        //         new sigma(graphStucture);
-        //         document.querySelector("#fitness-container-" + (index + 1)).innerHTML =  `Fitness: ${Tour.fitness.toFixed(5)} Distance: ${Tour.distance.toFixed(5)}`;
+            hilo.forEach((Tour, index) => {
+                let graphStucture = TourVizGraph(Tour.tour, "graph-container-" + (index + 1));
+                new sigma(graphStucture);
+                document.querySelector("#fitness-container-" + (index + 1)).innerHTML =  `Fitness: ${Tour.fitness.toFixed(5)} Distance: ${Tour.distance.toFixed(5)}`;
 
-        //     })
+            })
 
 
-       //});
+        });
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
